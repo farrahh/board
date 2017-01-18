@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Message Board</title>
+  </head>
+  <body>
+    <h1> Post a Message </h1>
+    <form action='/message' method="post">
+      <br>
+        <input type="text" name="name" placeholder="Name">
+        <br>
+
+         <textarea name="message" rows="15" cols="80" placeholder="Message goes here!"></textarea>
+         <input type="submit" value="Send Message!">
+      </form>
+
+      <h1> Here are the Messages </h1>
+    <% for (x of post) { %>
+      <h3> Name:  <%= x.name %> </a></h3>
+      <h3> Message:<%= x.message %> </h3>
+
+      <h4> Fight about it here:</h4>
+
+      <% for (var i of x.comments){%>
+        <p>Name:<%= i.name %></p>
+        <p>Comment: <%= i.text %></p>
+
+
+      <%} %>
+
+
+        <form action='/message/<%= x.id %>' method="post">
+          <br>
+            <input type="text" name="name" placeholder="Name">
+            <br>
+             <textarea name="text" rows="10" cols="30" placeholder="Leave a comment!"></textarea>
+             <input type="submit" value="Post a comment!">
+          </form>
+            <hr>
+  <% } %>
+
+
+  </body>
+</html>
